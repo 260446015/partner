@@ -67,12 +67,12 @@
         // 指定websocket路径
         var websocket;
         if ('WebSocket' in window) {
-            var url = "ws://localhost:8005/ws/im?uid="+${uid};
+            var url = "ws://zadai.net:8006/ws/im?uid="+${uid};
             websocket = new WebSocket(url+"&cuid=2");
         } else if ('MozWebSocket' in window) {
-            websocket = new MozWebSocket("ws://localhost:8005/ws/im?uid="+${uid});
+            websocket = new MozWebSocket("ws://zadai.net:8006/ws/im?uid="+${uid});
         } else {
-            websocket = new SockJS("https://localhost:8005/ws/im?uid="+${uid});
+            websocket = new SockJS("https://zadai.net:8006/ws/im?uid="+${uid});
         }
         //var websocket = new WebSocket('ws://localhost:8080/Spring-websocket/ws');
         websocket.onmessage = function(event) {

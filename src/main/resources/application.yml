@@ -1,6 +1,6 @@
 spring:
   profiles:
-#    active: online
+    active: online
   freemarker:
     template-loader-path: classpath:/templates/
     check-template-location: false
@@ -48,7 +48,7 @@ spring:
       #连接超时时间
       timeout: 10000
 server:
-  port: 8005
+  port: 8006
   servlet:
     session:
       timeout: 3600s

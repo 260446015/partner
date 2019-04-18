@@ -2,6 +2,7 @@ package com.weijin.partner.shiro;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.weijin.partner.shiro.ShiroDbRealm.ShiroUser;
 
@@ -20,7 +21,7 @@ public class ShiroUtil {
         try {
             response.setContentType("application/json");
             OutputStream outputStream = response.getOutputStream();
-            outputStream.write(JSON.toJSONString(ResponseEntity.status(-8).body(message)).getBytes("UTF-8"));
+            outputStream.write(JSON.toJSONString(ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body(message)).getBytes("UTF-8"));
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {

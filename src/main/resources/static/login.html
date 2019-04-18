@@ -12,12 +12,12 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
-            url: "/apis/user/list",
+            url: "/page/list",
             async: false,
             success: function (res) {
-                var html = '<select name="uid" id="uid">';
+                var html = '<select name="username" id="username">';
                 for (var i = 0; i < res.length; i++) {
-                    html += '<option value="' + res[i].id + '">' + res[i].id + '</option>';
+                    html += '<option value="' + res[i].username + '">' + res[i].name + '</option>';
                 }
                 html += '</select>';
                 $("#list").html(html);
@@ -25,8 +25,15 @@
         })
     })
     $("#login").click(function () {
-        var uid = $("#uid").val();
-        window.location.href = "/page/index/" + uid;
+        var username = $("#username").val();
+        $.ajax({
+            url:"/login",
+            type:"post",
+            data:{"username":username,"password":"123"},
+            success:function (res) {
+                window.location.href = "/page/index/" + res.id;
+            }
+        })
     })
 
 </script>
