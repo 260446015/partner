@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="list"></div>
+<button id="login">登录</button>
+</body>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: "/apis/user/list",
+            async: false,
+            success: function (res) {
+                var html = '<select name="uid" id="uid">';
+                for (var i = 0; i < res.length; i++) {
+                    html += '<option value="' + res[i].id + '">' + res[i].id + '</option>';
+                }
+                html += '</select>';
+                $("#list").html(html);
+            }
+        })
+    })
+    $("#login").click(function () {
+        var uid = $("#uid").val();
+        window.location.href = "/page/index/" + uid;
+    })
+
+</script>
+</html>

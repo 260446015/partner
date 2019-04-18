@@ -1,0 +1,63 @@
+spring:
+  profiles:
+#    active: online
+  freemarker:
+    template-loader-path: classpath:/templates/
+    check-template-location: false
+  datasource:
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    minIdle: 1
+    validationQuery: SELECT 1
+    initialSize: 5
+    maxWait: 60000
+    filters: stat,wall,logback
+    poolPreparedStatements: false
+    url: jdbc:mysql://localhost:3306/financial?serverTimezone=GMT%2B8
+    password: 123456
+    testOnBorrow: false
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 300000
+    timeBetweenEvictionRunsMillis: 60000
+    testOnReturn: false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    maxActive: 50
+    username: root
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  redis:
+    database: 0
+    host: localhost
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 8
+        #最大阻塞等待时间(负数表示没限制)
+        max-wait: -1
+        #最大空闲
+        max-idle: 8
+        #最小空闲
+        min-idle: 0
+      #连接超时时间
+      timeout: 10000
+server:
+  port: 8005
+  servlet:
+    session:
+      timeout: 3600s
+web:
+  upload-path: D:/financial/images/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    com:
+      weijin:
+        mapper: debug
